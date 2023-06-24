@@ -1,12 +1,12 @@
 import { useState } from 'react';
-import orderCoverImg from '../../../assets/shop/order.jpg'
+import { useParams } from 'react-router';
+import 'react-tabs/style/react-tabs.css';
+import OrderTab from '../OrderTab/OrderTab';
+import useMenu from '../../../hooks/useMenu';
+import { Helmet } from 'react-helmet-async';
 import Cover from '../../Shared/Cover/Cover';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
-import 'react-tabs/style/react-tabs.css';
-import useMenu from '../../../hooks/useMenu';
-import OrderTab from '../OrderTab/OrderTab';
-import { useParams } from 'react-router';
-import { Helmet } from 'react-helmet-async';
+import orderCoverImg from '../../../assets/shop/order.jpg'
 
 const Order = () => {
     const categories = ['salad', 'pizza', 'soup', 'dessert', 'drinks'];
@@ -20,6 +20,8 @@ const Order = () => {
     const salad = menu.filter(item => item.category === 'salad');
     const pizza = menu.filter(item => item.category === 'pizza');
     const drinks = menu.filter(item => item.category === 'drinks');
+
+    console.log(menu, desserts, soup, salad, pizza, drinks, 'console srabon')
 
     return (
         <div>

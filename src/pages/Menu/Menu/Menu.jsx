@@ -5,7 +5,7 @@ import menuImg from '../../../assets/menu/menu-bg.jpg'
 import soupImg from '../../../assets/menu/menu-bg.jpg'
 import MenuCategory from '../MenuCategory/MenuCategory'
 import pizzaImg from '../../../assets/menu/pizza-bg.jpg'
-import saladImg from '../../../assets/menu/salad-bg.jpg'
+import saladImg from '../../../assets/menu/pizza-bg.jpg'
 import PopularMenu from '../../Home/PopularMenu/PopularMenu';
 import dessertImg from '../../../assets/menu/dessert-bg.jpeg'
 import SectionTitle from '../../../components/SectionTitle/SectionTitle';
