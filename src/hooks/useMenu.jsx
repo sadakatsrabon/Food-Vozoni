@@ -8,7 +8,7 @@ const useMenu = () => {
         fetch("/menu.json") // Replace with the correct URL to the JSON file
             .then(res => res.json())
             .then(data => {
-                console.log(data, 'from data')
+                // console.log(data, 'from data')
                 setMenu(data);
                 setLoading(false);
             })

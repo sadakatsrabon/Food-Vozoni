@@ -7,7 +7,6 @@ import 'react-tabs/style/react-tabs.css';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import orderCoverImg from '../../../assets/shop/order.jpg'
 import useMenu from '../../../hooks/useMenu';
-import FoodCard from '../../../components/FoodCard/FoodCard';
 
 const Order = () => {
     const categories = ['salad', 'pizza', 'soup', 'dessert', 'drinks'];
@@ -21,7 +20,7 @@ const Order = () => {
     const pizza = menu.filter(item => item.category === 'pizza');
     const drinks = menu.filter(item => item.category === 'drinks');
 
-    console.log(menu, desserts, soup, salad, pizza, drinks, 'console srabon')
+    // console.log(menu, desserts, soup, salad, pizza, drinks, 'console srabon')
 
     return (
         <div>
