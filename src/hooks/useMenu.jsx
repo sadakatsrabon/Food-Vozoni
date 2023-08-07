@@ -19,7 +19,7 @@ const useMenu = () => {
             });
     }, []);
 
-    console.log(menu, 'from menu');
+    // console.log(menu, 'from menu');
 
     return [menu, loading];
 }
