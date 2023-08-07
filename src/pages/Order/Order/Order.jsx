@@ -7,6 +7,7 @@ import 'react-tabs/style/react-tabs.css';
 import { Tab, TabList, TabPanel, Tabs } from 'react-tabs';
 import orderCoverImg from '../../../assets/shop/order.jpg'
 import useMenu from '../../../hooks/useMenu';
+import FoodCard from '../../../components/FoodCard/FoodCard';
 
 const Order = () => {
     const categories = ['salad', 'pizza', 'soup', 'dessert', 'drinks'];
@@ -37,6 +38,15 @@ const Order = () => {
                     <Tab>Drinks</Tab>
                 </TabList>
                 <TabPanel>
+                    {
+                        salad.map(item => <FoodCard
+                        key={item._id}
+                        item={item}
+                        ></FoodCard>)
+                    }
+                </TabPanel>
+                {/* main. */}
+                {/* <TabPanel>
                     <OrderTab items={salad}></OrderTab>
                 </TabPanel>
                 <TabPanel>
@@ -50,7 +60,7 @@ const Order = () => {
                 </TabPanel>
                 <TabPanel>
                     <OrderTab items={drinks}></OrderTab>
-                </TabPanel>
+                </TabPanel> */}
             </Tabs>
         </div>
     );
