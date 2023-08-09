@@ -5,7 +5,7 @@ const useMenu = () => {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch("/menu.json") // Replace with the correct URL to the JSON file
+        fetch("http://localhost:5000/menu") // Replace with the correct URL to the JSON file
             .then(res => res.json())
             .then(data => {
                 // console.log(data, 'from data')
