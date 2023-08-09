@@ -1,7 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
 // import loginImg = '../../assets/others/authentication1.png';
 
 const Login = () => {
+
+    useEffect(() => {
+        loadCaptchaEnginge(6);
+    }, [])
+
     const handleLogin = event => {
         event.preventDefault();
         const form = event.target;
@@ -35,6 +41,13 @@ const Login = () => {
                                 <label className="label">
                                     <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                                 </label>
+                            </div>
+                            {/* Captcha Type */}
+                            <div className="form-control">
+                                <label className="label">
+                                    <LoadCanvasTemplate />
+                                </label>
+                                <input type="text" name='captcha' placeholder="Type Captcha above" className="input input-bordered" />
                             </div>
                             <div className="form-control mt-6">
                                 <input className="btn btn-primary" type="submit" value="Login" />
