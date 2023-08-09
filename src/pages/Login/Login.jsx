@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';
-import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
+import React, { useEffect, useRef, useState } from 'react';
+import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
 // import loginImg = '../../assets/others/authentication1.png';
 
 const Login = () => {
+    const captchaRef = useRef(null);
+    const [disabled, setDisabled] = useState(true);
 
     useEffect(() => {
         loadCaptchaEnginge(6);
@@ -14,6 +16,16 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
     }
+    const handleValidateCaptcha = () =>{
+        const user_captcha_value = captchaRef.current.value;
+        if(validateCaptcha(user_captcha_value)){
+         setDisabled(false);   
+        }
+        else{
+            setDisabled(true);
+        }
+    }
+
     return (
         <div className="hero min-h-screen bg-base-200">
             <div className="hero-content flex-col lg:flex-row">
@@ -47,10 +59,11 @@ const Login = () => {
                                 <label className="label">
                                     <LoadCanvasTemplate />
                                 </label>
-                                <input type="text" name='captcha' placeholder="Type Captcha above" className="input input-bordered" />
+                                <input type="text" name='captcha' ref={captchaRef} placeholder="Type Captcha above" className="input input-bordered" />
+                                <button onClick={handleValidateCaptcha} className="btn btn-outline btn-xs mt-2">Validate</button>
                             </div>
                             <div className="form-control mt-6">
-                                <input className="btn btn-primary" type="submit" value="Login" />
+                                <input disabled={disabled} className="btn btn-primary" type="submit" value="Login" />
                             </div>
                         </div>
                     </form>
