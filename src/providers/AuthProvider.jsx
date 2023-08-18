@@ -1,41 +1,42 @@
-import { createContext, useState } from "react";
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
-import { app } from "../firebase/firebase.config";
-import { useEffect } from "react";
+import { useEffect, useState } from 'react';
+import { createContext } from 'react';
+import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import app from '../firebase/firebase.congig';
 
 export const AuthContext = createContext(null);
+
 const auth = getAuth(app);
 
 const AuthProvider = ({ children }) => {
-
     const [user, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
 
-    // Creating User
-    const createUser = (email, password) => {
+    // Create User
+    const createUser = ( email, password) =>{
         setLoading(true);
-        return createUserWithEmailAndPassword(auth, email, password)
-    }
-    // SignIn User
-    const signIn = (email, password) => {
-        setLoading(true);
-        return signInWithEmailAndPassword(email, password);
+        return createUserWithEmailAndPassword(auth, email, password);
     }
 
-    // Sign Out
-    const logout = () => {
+    // Login a user
+    const signIn = (email, password)=>{
         setLoading(true);
-        return singnOut(auth);
+        return signInWithEmailAndPassword(auth, email, password);
+    }
+
+    // Logout a user 
+    const logOut = () => {
+        setLoading(true);
+        return signOut(auth);
     }
 
     useEffect(() => {
-        const unSubscribe = onAuthStateChanged(auth, currentUser => {
+        const unsubscribe = onAuthStateChanged(auth, currentUser => {
             setUser(currentUser);
-            console.log('Current User:', currentUser);
+            console.log('current Usere', currentUser)
             setLoading(false);
         });
-        return () => {
-            return unSubscribe();
+        return () =>{
+            return unsubscribe();
         }
     }, [])
 
@@ -44,7 +45,7 @@ const AuthProvider = ({ children }) => {
         loading,
         createUser,
         signIn,
-        logout
+        logOut
     }
 
     return (

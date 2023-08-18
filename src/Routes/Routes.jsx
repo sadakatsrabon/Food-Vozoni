@@ -33,7 +33,13 @@ export const router = createBrowserRouter([
       {
         path: 'signup',
         element: <SingUp></SingUp>
-      }
+      },
+      // {
+      //   path: 'secret',
+      //   element: <PrivateRoutes>
+      //     <Secret></Secret>
+      //   </PrivateRoutes>
+      // }
     ]
   },
 ]);
