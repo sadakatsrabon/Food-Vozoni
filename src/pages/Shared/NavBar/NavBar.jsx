@@ -1,5 +1,6 @@
 
 import { useContext } from "react";
+import { FaShoppingCart } from 'react-icons/fa';
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import Swal from "sweetalert2";
@@ -11,13 +12,13 @@ const NavBar = () => {
         logOut()
             .then(() => { })
             .catch(error => console.error(error));
-            Swal.fire({
-                position: 'top-end',
-                icon: 'success',
-                title: 'You Have Successfull Logged Out',
-                showConfirmButton: false,
-                timer: 1500
-              })
+        Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'You Have Successfull Logged Out',
+            showConfirmButton: false,
+            timer: 1500
+        })
     }
 
 
@@ -26,6 +27,15 @@ const NavBar = () => {
         <li><Link to="/menu">Our Menu</Link></li>
         <li><Link to="/order/salad">Order Food</Link></li>
         <li><Link to="/secret">Secret Menu</Link></li>
+        <li>
+            <Link to="/">
+                <button className="btn">
+                    <FaShoppingCart></FaShoppingCart>
+                    <div className="badge badge-primary">+0</div>
+                </button>
+            </Link>
+        </li>
+
         {
             user ? <>
                 <button onClick={hadnleLogOut} className="btn btn-active btn-ghost">LogOut</button>
