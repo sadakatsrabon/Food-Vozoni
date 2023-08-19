@@ -28,10 +28,10 @@ const NavBar = () => {
         <li><Link to="/secret">Secret Menu</Link></li>
         {
             user ? <>
-                <span>{user?.displayName}</span>
                 <button onClick={hadnleLogOut} className="btn btn-active btn-ghost">LogOut</button>
             </> : <>
                 <li><Link to="/login">Login</Link></li>
+                <span>{user?.displayName}</span>
             </>
         }
     </>

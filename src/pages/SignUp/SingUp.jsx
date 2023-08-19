@@ -3,17 +3,14 @@ import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const SingUp = () => {
 
-    const {
-        register,
-        handleSubmit,
-        formState: { errors },
-    } = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
-    const { createUser } = useContext(AuthContext);
+    const { createUser, updateUserProfile } = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const onSubmit = (data) => {
         console.log(data);
@@ -21,13 +18,30 @@ const SingUp = () => {
             .then(result => {
                 const loggedUser = result.user;
                 console.log(loggedUser);
+                updateUserProfile(data.name, data.photoURL)
+                .then(() =>{
+                    console.log("user profile info updated");
+                    reset();
+                    // alart
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Profile info has been updated',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                })
+                .catch(error => console.error(error));
+
+                // SignUp alart
                 Swal.fire({
                     position: 'top-end',
                     icon: 'success',
                     title: 'SignUp has been saved',
                     showConfirmButton: false,
                     timer: 1500
-                  })
+                })
+                navigate('/login');
             })
     };
     // console.log(watch("example"));
@@ -49,6 +63,10 @@ const SingUp = () => {
                             <div className="form-control">
                                 <input type="text" {...register("name", { required: true })} name="name" placeholder="Your Name" className="input input-bordered" />
                                 {errors.name && <span className="text-red-600">Name is required</span>}
+                            </div>
+                            {/* Photo url */}
+                            <div className="form-control">
+                                <input type="text" {...register("photoURL")} placeholder="Input your photo url" className="input input-bordered" />
                             </div>
                             {/* email */}
                             <div className="form-control">
