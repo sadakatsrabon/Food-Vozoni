@@ -25,6 +25,7 @@ const NavBar = () => {
         <li><Link to="/">Home</Link></li>
         <li><Link to="/menu">Our Menu</Link></li>
         <li><Link to="/order/salad">Order Food</Link></li>
+        <li><Link to="/secret">Secret Menu</Link></li>
         {
             user ? <>
                 <span>{user?.displayName}</span>

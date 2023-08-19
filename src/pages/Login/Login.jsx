@@ -1,12 +1,16 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import Swal from 'sweetalert2';
 
 const Login = () => {
-
+    // Here missing react capcha 
     const { signIn } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || "/";
 
     const handleLogin = event => {
         event.preventDefault();
@@ -25,6 +29,7 @@ const Login = () => {
                     showConfirmButton: false,
                     timer: 1500
                 })
+                navigate(from, { replace: true });
             })
     }
 
